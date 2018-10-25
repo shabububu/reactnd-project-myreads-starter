@@ -49,9 +49,11 @@ class ListBooks extends Component {
     ]
   }
   
-  moveBookToShelf = (book) => {
+  moveBookToShelf = (book, newShelf) => {
+    var currentBook = this.state.books.find( obj => obj.id === book.id );
+    currentBook.shelf = newShelf;
     this.setState((state) => ({
-      books: state.books.map( b => (b.id === book.id) ? book : b)
+      books: state.books
     }))
   }
 

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-//import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-//import escapeRegExp from 'escape-string-regexp'
-//import sortBy from 'sort-by'
 import ShelfSelector from './ShelfSelector'
 
 class Book extends Component {
@@ -19,7 +16,7 @@ class Book extends Component {
     return (
       <div className="book">
         <div className="book-top">
-      <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${coverUrl})` }}></div>
+          <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${coverUrl})` }}></div>
           <ShelfSelector selected={shelf} />
         </div>
         <div className="book-title">{title}</div>

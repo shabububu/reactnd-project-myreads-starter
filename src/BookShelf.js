@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-//import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-//import escapeRegExp from 'escape-string-regexp'
-//import sortBy from 'sort-by'
 import Book from './Book'
 
 class BookShelf extends Component {
@@ -19,14 +16,14 @@ class BookShelf extends Component {
         <div className="bookshelf-books">
           <ol className="books-grid">
             { books.map( b => (
-	      <li key={b.title+b.authors} onChange={() => this.props.onUpdateShelf(b)}>
+              <li key={b.title+b.authors} 
+                  onChange={(event) => this.props.onUpdateShelf(b, event.target.value)}>
                 <Book 
                   id={b.id}
                   title={b.title}
-	          authors={b.authors}
+                  authors={b.authors}
                   coverUrl={b.coverUrl}
-                  shelf={b.shelf}
-	          />
+                  shelf={b.shelf} />
               </li>
 	    ))}
           </ol>
