@@ -1,10 +1,12 @@
-import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import React, { Component } from 'react'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
 import ListBooks from './ListBooks'
 
-class BooksApp extends React.Component {
+class BooksApp extends Component {
   state = {
+    books: [],
+
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -12,6 +14,23 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books }) //SAME AS: this.setState({ books: books })
+    })
+  }
+
+  moveBookToShelf = (book, newShelf) => {
+    this.setState((state) => {
+      for (var ind in state.books) {
+        if (state.books[ind].id === book.id) {
+          state.books[ind].shelf = newShelf
+        }
+      }
+      return state.books
+    })
   }
 
   render() {
@@ -39,7 +58,10 @@ class BooksApp extends React.Component {
             </div>
           </div>
         ) : (
-          <ListBooks title="MyReads" />
+          <ListBooks
+            title="MyReads"
+            books={this.state.books}
+            onUpdateShelf={this.moveBookToShelf} />
         )}
       </div>
     )
