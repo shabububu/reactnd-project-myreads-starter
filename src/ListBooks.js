@@ -11,7 +11,7 @@ class ListBooks extends Component {
 
   state = {
     shelves: [
-      {"title": "CurrentlyReading",
+      {"title": "Currently Reading",
        "id": "currentlyReading"},
       {"title": "Want to Read",
        "id": "wantToRead"},

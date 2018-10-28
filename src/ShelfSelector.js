@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
 
 class ShelfSelector extends Component {
-  static propTypes = {
-    selected: PropTypes.string.isRequired // none | currentlyReading | wantToRead | read
-  };
-
   render() {
-    const { selected } = this.props
+    const { selected } = this.props || "none";
 
     return (
       <div className="book-shelf-changer">
