@@ -13,11 +13,12 @@ class AddBook extends Component {
     console.log("AddBook.updateBooks values="+BooksAPI.search(query));
     if (query && query !== '') {
       BooksAPI.search(query).then((books) => {
+        //console.log(books);
         if (books.error) {
           this.setState({ books: [] });
 	} else {
           this.setState({ books: (books) });
-          console.log("BooksAPI.search "+query+": "+JSON.stringify(books));
+          //console.log("BooksAPI.search "+query+": "+JSON.stringify(books));
         }
       })
     } else {
@@ -47,7 +48,15 @@ class AddBook extends Component {
             </form>
             <div className="search-books-results">
               <ol className="books-grid">
-	        {this.state.books.map( book => <li key={book.id}><Book book={book} key={book.id} /></li> )}
+                { this.state.books.map( book =>
+                    <li key={book.id}
+                        onChange={ (event) => this.props.addBook(book, event.target.value) } >
+                      <Book
+                        book={book}
+                        key={book.id}
+                      />
+                    </li>
+                 )}
               </ol>
             </div>
           </div>

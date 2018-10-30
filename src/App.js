@@ -25,10 +25,17 @@ class BooksApp extends Component {
 
   moveBookToShelf = (book, newShelf) => {
     this.setState((state) => {
+      var found = false;
       for (var ind in state.books) {
         if (state.books[ind].id === book.id) {
-          state.books[ind].shelf = newShelf
+          state.books[ind].shelf = newShelf;
+          found = true;
         }
+      }
+      if (found === false) {
+        book.shelf = newShelf;
+        state.books = state.books.concat( book );
+        alert("Added new Book to Shelf");
       }
       return state.books
     })
@@ -41,9 +48,17 @@ class BooksApp extends Component {
           <ListBooks
             title="MyReads"
             books={this.state.books}
-            onUpdateShelf={this.moveBookToShelf} />
+            onUpdateShelf={this.moveBookToShelf} 
+          />
+	)} />
+        <Route path='/add' render={({ history }) => (
+          <AddBook 
+            addBook={(book, newShelf) => {
+              this.moveBookToShelf(book, newShelf);
+              history.push('/'); // So the back button works?
+            }} 
+          />
         )} />
-        <Route path="/add" component={AddBook} />
       </div>
     )
   }
