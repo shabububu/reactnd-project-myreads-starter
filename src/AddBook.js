@@ -10,7 +10,7 @@ class AddBook extends Component {
 
   updateBooks = (e) => {
     var query = e.target.value;
-    console.log("AddBook.updateBooks values="+BooksAPI.search(query));
+    //console.log("AddBook.updateBooks values="+BooksAPI.search(query));
     if (query && query !== '') {
       BooksAPI.search(query).then((books) => {
         //console.log(books);

@@ -8,17 +8,11 @@ import AddBook from './AddBook'
 class BooksApp extends Component {
   state = {
     books: [],
-
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
   }
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
+      // TODO: replace all books with already existing books if exists on shelf
       this.setState({ books }) //SAME AS: this.setState({ books: books })
     })
   }
@@ -35,7 +29,6 @@ class BooksApp extends Component {
       if (found === false) {
         book.shelf = newShelf;
         state.books = state.books.concat( book );
-        alert("Added new Book to Shelf");
       }
       return state.books
     })
@@ -55,7 +48,6 @@ class BooksApp extends Component {
           <AddBook 
             addBook={(book, newShelf) => {
               this.moveBookToShelf(book, newShelf);
-              history.push('/'); // So the back button works?
             }} 
           />
         )} />

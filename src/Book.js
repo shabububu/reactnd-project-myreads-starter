@@ -20,7 +20,7 @@ class Book extends Component {
               :
               <div className="book-cover"></div>
           }
-          <ShelfSelector selected={book.shelf} />
+          <ShelfSelector selected={book.shelf || "none"} />
         </div>
         <div className="book-title">{book.title}</div>
         <div className="book-authors">{book.authors}</div>
