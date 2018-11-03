@@ -8,17 +8,20 @@ class AddBook extends Component {
     books: [],
   }
 
-  updateBooks = (e) => {
+  updateBooks = (e, existingBooks) => {
     var query = e.target.value;
-    //console.log("AddBook.updateBooks values="+BooksAPI.search(query));
+    console.log("AddBook.updateBooks values="+BooksAPI.search(query));
     if (query && query !== '') {
       BooksAPI.search(query).then((books) => {
-        //console.log(books);
+        console.log(books);
         if (books.error) {
           this.setState({ books: [] });
 	} else {
-          this.setState({ books: (books) });
-          //console.log("BooksAPI.search "+query+": "+JSON.stringify(books));
+	  const modBooks = books.map( b => {
+	    var knownBooks = existingBooks.filter( eb => eb.id === b.id);
+            return (knownBooks.length > 0 ) ? knownBooks[0] : b
+	  });
+          this.setState({ books: (modBooks) });
         }
       })
     } else {
@@ -27,6 +30,7 @@ class AddBook extends Component {
   }
 
   render() {
+    const { existingBooks } = this.props || [];
     return (
           <div className="search-books">
             <form className="search-books-form">
@@ -41,20 +45,18 @@ class AddBook extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input type="text" onChange={this.updateBooks} placeholder="Search by title or author"/>
-
+                <input 
+                  type="text" 
+                  onChange={ (event) => this.updateBooks(event, existingBooks) } 
+                  placeholder="Search by title or author" />
               </div>
             </div>
             </form>
             <div className="search-books-results">
               <ol className="books-grid">
                 { this.state.books.map( book =>
-                    <li key={book.id}
-                        onChange={ (event) => this.props.addBook(book, event.target.value) } >
-                      <Book
-                        book={book}
-                        key={book.id}
-                      />
+                    <li key={book.id} onChange={ (event) => this.props.addBook(book, event.target.value) } >
+                      <Book book={book} key={book.id} />
                     </li>
                  )}
               </ol>

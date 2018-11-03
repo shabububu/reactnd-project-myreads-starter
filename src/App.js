@@ -12,7 +12,6 @@ class BooksApp extends Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      // TODO: replace all books with already existing books if exists on shelf
       this.setState({ books }) //SAME AS: this.setState({ books: books })
     })
   }
@@ -40,15 +39,14 @@ class BooksApp extends Component {
         <Route exact path="/" render={() => (
           <ListBooks
             title="MyReads"
-            books={this.state.books}
-            onUpdateShelf={this.moveBookToShelf} 
+            books={ this.state.books }
+            onUpdateShelf={ this.moveBookToShelf } 
           />
 	)} />
         <Route path='/add' render={({ history }) => (
-          <AddBook 
-            addBook={(book, newShelf) => {
-              this.moveBookToShelf(book, newShelf);
-            }} 
+          <AddBook
+            existingBooks={ this.state.books }
+            addBook={ (book, newShelf) => { this.moveBookToShelf(book, newShelf) }} 
           />
         )} />
       </div>
