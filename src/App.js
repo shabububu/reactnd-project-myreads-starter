@@ -52,7 +52,7 @@ class BooksApp extends Component {
             onUpdateShelf={ this.moveBookToShelf } 
           />
 	)} />
-        <Route path='/add' render={({ history }) => (
+        <Route path='/search' render={({ history }) => (
           <AddBook
             existingBooks={ this.state.books }
             addBook={ (book, newShelf) => { this.moveBookToShelf(book, newShelf) }} 
