@@ -10,6 +10,9 @@ class BooksApp extends Component {
     books: [],
   }
 
+  /**
+   * @description Loads books from localStorage or BooksAPI call
+   */
   componentDidMount() {
     let cachedBooks = localStorage.getItem("cachedBookAppBooks");
     if ( cachedBooks ) {
@@ -24,6 +27,11 @@ class BooksApp extends Component {
     }
   }
 
+  /**
+   * @description Moves a book to a certain shelf. If the book does not exist, it is added as well.
+   * @param: book - book to be moved or added
+   * @param: newShelf - the shelf where the book is to be added
+   */
   moveBookToShelf = (book, newShelf) => {
     this.setState((state) => {
       var found = false;

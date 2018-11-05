@@ -8,6 +8,11 @@ class AddBook extends Component {
     books: [],
   }
 
+  /**
+   * @description Updates the books that match the event's query
+   * @param: e - event that provides the query
+   * @param: existingBooks - the existing shelved books provided by the parent application
+   */
   updateBooks = (e, existingBooks) => {
     var query = e.target.value;
     if (query && query !== '') {
@@ -30,36 +35,36 @@ class AddBook extends Component {
   render() {
     const { existingBooks } = this.props || [];
     return (
-          <div className="search-books">
-            <form className="search-books-form">
-            <div className="search-books-bar">
-              <Link to="/" className="close-search">Close</Link>
-              <div className="search-books-input-wrapper">
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
+      <div className="search-books">
+        <form className="search-books-form">
+          <div className="search-books-bar">
+            <Link to="/" className="close-search">Close</Link>
+            <div className="search-books-input-wrapper">
+              {/*
+                NOTES: The search from BooksAPI is limited to a particular set of search terms.
+                You can find these search terms here:
+                https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
 
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
-                <input 
-                  type="text" 
-                  onChange={ (event) => this.updateBooks(event, existingBooks) } 
-                  placeholder="Search by title or author" />
-              </div>
-            </div>
-            </form>
-            <div className="search-books-results">
-              <ol className="books-grid">
-                { this.state.books.map( book =>
-                    <li key={book.id} onChange={ (event) => this.props.addBook(book, event.target.value) } >
-                      <Book book={book} key={book.id} />
-                    </li>
-                 )}
-              </ol>
+                However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
+                you don't find a specific author or title. Every search is limited by search terms.
+              */}
+              <input 
+                type="text" 
+                onChange={ (event) => this.updateBooks(event, existingBooks) } 
+                placeholder="Search by title or author" />
             </div>
           </div>
+        </form>
+        <div className="search-books-results">
+          <ol className="books-grid">
+            { this.state.books.map( book =>
+              <li key={book.id} onChange={ (event) => this.props.addBook(book, event.target.value) } >
+                <Book book={book} key={book.id} />
+              </li>
+            )}
+          </ol>
+        </div>
+      </div>
     )
   }
 }
