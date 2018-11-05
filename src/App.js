@@ -16,14 +16,14 @@ class BooksApp extends Component {
   componentDidMount() {
     let cachedBooks = localStorage.getItem("cachedBookAppBooks");
     if ( cachedBooks ) {
-        this.setState({ books: JSON.parse(cachedBooks) })
+      this.setState({ books: JSON.parse(cachedBooks) });
     } else {
       BooksAPI.getAll().then((books) => {
         this.setState(() => {
           localStorage.setItem("cachedBookAppBooks", JSON.stringify(books));
-          return books
-        })
-      })
+          return books;
+        });
+      });
     }
   }
 
@@ -46,7 +46,7 @@ class BooksApp extends Component {
         state.books = state.books.concat( book );
       }
       localStorage.setItem("cachedBookAppBooks", JSON.stringify(state.books));
-      return state.books
+      return state.books;
     });
   }
 

@@ -22,7 +22,7 @@ class AddBook extends Component {
 	} else {
 	  const modBooks = books.map( b => {
 	    var knownBooks = existingBooks.filter( eb => eb.id === b.id);
-            return (knownBooks.length > 0 ) ? knownBooks[0] : b
+            return (knownBooks.length > 0 ) ? knownBooks[0] : b;
 	  });
           this.setState({ books: (modBooks) });
         }
@@ -65,7 +65,7 @@ class AddBook extends Component {
           </ol>
         </div>
       </div>
-    )
+    );
   }
 }
 
