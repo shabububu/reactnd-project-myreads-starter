@@ -16,7 +16,7 @@ class BookShelf extends Component {
         <div className="bookshelf-books">
           <ol className="books-grid">
             { books.map( b => (
-              {/* TODO: avoid arrow functions in onChange events for better efficiency */}
+              /* TODO: avoid arrow functions in onChange events for better efficiency */
               <li key={b.id} 
                   onChange={(event) => this.props.onUpdateShelf(b, event.target.value)}>
 	        <Book book={b} />
