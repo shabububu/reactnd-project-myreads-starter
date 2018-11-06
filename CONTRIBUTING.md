@@ -1,3 +1,3 @@
 # How to contribute
 
-The files in this repository are used in the course videos and are the starting point for all students. Because we want all students to have the same experience going through course, if your pull request alters any of the core files, then it (most likely) will _not_ be merged into the project.
+I'm open to suggestions and feedback, but because this project was created from a course, I will not likely be updating it too often or taking in contribution requests. Most likely, you will not care to do that anyway, since so many other students are making applications just like this one. If you really do want to contribute, please to ahead and send me a message. Thanks.
