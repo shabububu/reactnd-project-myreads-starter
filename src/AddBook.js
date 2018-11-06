@@ -48,6 +48,7 @@ class AddBook extends Component {
                 However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                 you don't find a specific author or title. Every search is limited by search terms.
               */}
+              {/* TODO: avoid arrow functions in onChange events for better efficiency */}
               <input 
                 type="text" 
                 onChange={ (event) => this.updateBooks(event, existingBooks) } 
